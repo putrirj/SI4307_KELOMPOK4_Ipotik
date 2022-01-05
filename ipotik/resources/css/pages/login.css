@@ -1,0 +1,44 @@
+body {
+  font-weight: 400;
+}
+
+.card-title {
+  color: #4DA5CA;
+  font-size: 32px;
+  text-align: center;
+}
+
+.nav-login-card {
+  margin: 0 20px;
+}
+
+.nav-login-card a {
+  color: #CBCBCB !important;
+  font-size: 20px;
+}
+
+.nav-login-card .active {
+  color: #70C5E9 !important;
+}
+
+.form-control {
+  border-radius: 5px;
+  border: 2px solid #979797;
+}
+
+.text-grey {
+  color: #AEA8A8;
+}
+
+.btn-login {
+  width: 140px;
+  border-radius: 5px;
+  background-color: #9DD0E7;
+  border-color: #9DD0E7;
+}
+
+.btn-login:hover {
+  background-color: #9DD0E7;
+  border-color: #9DD0E7;
+}
+/*# sourceMappingURL=login.css.map */
