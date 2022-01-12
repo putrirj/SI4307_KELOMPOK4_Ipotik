@@ -84,6 +84,10 @@
                                            @endforeach
                                         </tbody>
                                     </table>
+                                    <div>
+                                    <h5 class="justify-content-center text-center">Bukti Pembayaran</h5>
+                                    <img src="{{ asset('storage/'.$transaction->buktifile) }}" class="w-100 h-auto">
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@
         <div class="container p-0 col-lg-8">
             <section id="menu">
                 <div class="container">
-                    <form action="{{ route('cart.checkout') }}" method="post">
+                    <form action="{{ route('cart.checkout') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row justify-content-center mt-3">
                             <p class="h4 text-center mt-3 mb-3">Checkout</p>
@@ -73,6 +73,18 @@
                                                     <tr class="border-0">
                                                         <td colspan="6" class="text-end border-0">
                                                             <p class="h5">Grand Total: Rp. {{ $total }}</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="border-0">
+                                                        <td colspan="6" class="text-end border-0">
+                                                            <div class="mb-3 justify-content-center text-center">
+                                                                <label for="bukti" class="form-label">Upload Bukti Transfer</label>
+                                                                <input type="file" name="bukti" class="form-control" required>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="border-0">
+                                                        <td colspan="6" class="text-end border-0">
                                                             <button type="submit" class="btn btn-primary">Pesan</button>
                                                         </td>
                                                     </tr>

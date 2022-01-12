@@ -41,6 +41,7 @@
                                             <tr>
                                                 <td colspan="4" class="text-end">
                                                     <p class="mb-2">Total Belanja: Rp {{ $total }}</p>
+                                                    <a href="{{ route('medicine.index') }}" class="btn btn-primary bg-primary border-0">Add Another</a>
                                                     <a href="{{ route('cart.create') }}" class="btn btn-primary bg-primary border-0">Checkout</a>
                                                 </td>
                                             </tr>

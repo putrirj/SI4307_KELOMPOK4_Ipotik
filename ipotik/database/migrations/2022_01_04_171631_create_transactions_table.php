@@ -25,6 +25,8 @@ class CreateTransactionsTable extends Migration
             $table->string('file_name')->nullable();
             $table->string('file_type')->nullable();
             $table->string('file')->nullable();
+            $table->string('bukti')->nullable();
+            $table->string('buktifile')->nullable();
             $table->integer('total')->nullable();
             $table->integer('status');
             $table->timestamps();

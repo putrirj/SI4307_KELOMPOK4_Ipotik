@@ -33,7 +33,8 @@ class CartController extends Controller
             'name' => 'required|string',
             'phone' => 'required|string',
             'address' => 'required|string',
-            'courier' => 'required|string'
+            'courier' => 'required|string',
+            'bukti' => 'required|file|mimes:pdf,jpg,png'
         ]);
 
         $carts = Cart::with('medicine')->where('user_id', Auth::user()->id)->get();
@@ -44,6 +45,8 @@ class CartController extends Controller
             $transaction->phone = $validated['phone'];
             $transaction->address = $validated['address'];
             $transaction->courier = $validated['courier'];
+            $transaction->bukti = $validated['bukti']->getClientOriginalName();
+            $transaction->buktifile = $validated['bukti']->store('bukti', 'public');
             $transaction->user_id = Auth::user()->id;
             $transaction->type = "pembelian";
             $transaction->total = $carts->sum('sub_total');
