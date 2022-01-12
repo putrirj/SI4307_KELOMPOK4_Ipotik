@@ -102,13 +102,16 @@ class TransactionController extends Controller
             'name' => 'required|string',
             'phone' => 'required|string',
             'address' => 'required|string',
-            'courier' => 'required|string'
+            'courier' => 'required|string',
+            'bukti' => 'required|file|mimes:pdf,jpg,png'
         ]);
 
         $transaction->name = $validated['name'];
         $transaction->phone = $validated['phone'];
         $transaction->address = $validated['address'];
         $transaction->courier = $validated['courier'];
+        $transaction->bukti = $validated['bukti']->getClientOriginalName();
+        $transaction->buktifile = $validated['bukti']->store('bukti', 'public');
         $transaction->status = 3;
 
         if ($transaction->save()) {

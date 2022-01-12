@@ -117,6 +117,15 @@ class CartController extends Controller
 
     public function destroy(Cart $cart)
     {
-        //
+        if ($cart->delete()) {
+            return redirect()->route('cart.index')
+                ->with('alert_type', 'success')
+                ->with('alert_message', 'Obat berhasil dihapus.');
+        }
+
+        return back()
+            ->with('alert_type', 'error')
+            ->with('alert_message', 'Obat gagal dihapus.');
     }
+    
 }

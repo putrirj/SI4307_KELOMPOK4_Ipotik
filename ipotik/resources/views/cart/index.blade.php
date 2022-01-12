@@ -29,6 +29,11 @@
                                                 <td class="text-center">Rp. {{ $cart->medicine->price }}</td>
                                                 <td class="text-center">{{ $cart->quantity }}</td>
                                                 <td class="text-center">Rp. {{ $cart->sub_total }}</td>
+                                                <form action="{{ route('cart.destroy', $cart->id)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                    <td><button class="btn btn-danger mt-2" type="submit" name="delete">Delete</button></td>
+                                                </form>
                                             </tr>
                                             @empty
                                                 <tr>

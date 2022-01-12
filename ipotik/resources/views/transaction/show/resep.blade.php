@@ -9,21 +9,6 @@
                         <p class="h4 text-center mt-3 mb-3">Detail Resep</p>
                         <div class="col-12 mb-3">
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th class="table-dark" width="20%">Nama</th>
-                                            <td>{{ Auth::user()->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="table-dark" width="20%">Alamat</th>
-                                            <td>{{ Auth::user()->alamat }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th class="table-dark" width="20%">Tanggal</th>
-                                            <td>{{ $transaction->created_at }}</td>
-                                        </tr>
-                                    </thead>
                                 </table>
                             </div>
                         </div>

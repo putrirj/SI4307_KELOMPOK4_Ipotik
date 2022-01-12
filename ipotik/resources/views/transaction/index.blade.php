@@ -34,7 +34,6 @@
                                                             <td class="text-center">Pending</td>
                                                             <td class="text-center">Belum dibayar</td>
                                                             <td class="text-center">
-                                                                <a href="{{ route('transaction.show', $transaction->id) }}" class="btn btn-primary">Detail</a>
                                                                 <a href="{{ route('transaction.bayar', $transaction->id) }}" class="btn btn-danger">Bayar</a>
                                                             </td>
                                                             @break

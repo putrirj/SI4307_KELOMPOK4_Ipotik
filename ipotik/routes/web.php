@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('cart/checkout', [CartController::class, 'create'])->name('cart.create');
         Route::post('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
         Route::post('cart/{medicine}', [CartController::class, 'store'])->name('cart.store');
+        Route::delete('cart/{cart}', [CartController::class, 'destroy'])->name('cart.destroy');
 
         Route::get('transaction', [TransactionController::class, 'index'])->name('transaction.index');
         Route::get('transaction/receipt', [TransactionController::class, 'receipt'])->name('transaction.receipt');
