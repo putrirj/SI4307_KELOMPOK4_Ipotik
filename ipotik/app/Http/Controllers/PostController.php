@@ -69,8 +69,8 @@ class PostController extends Controller
         $post->tag = $validated['tag'];
 
         if ($request->has('thumbnail') && $validated['thumbnail'] != null) {
-            if (Storage::exists($post->thumbnail)) {
-                Storage::delete($post->thumbnail);
+            if (Storage::disk('public')->exists($post->thumbnail)) {
+                Storage::disk('public')->delete($post->thumbnail);
             }
             $post->thumbnail = $validated['thumbnail']->store('posts', 'public');
         }
@@ -88,8 +88,8 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        if (Storage::exists($post->thumbnail)) {
-            Storage::delete($post->thumbnail);
+        if (Storage::disk('public')->exists($post->thumbnail)) {
+            Storage::disk('public')->delete($post->thumbnail);
         }
 
         if ($post->delete()) {

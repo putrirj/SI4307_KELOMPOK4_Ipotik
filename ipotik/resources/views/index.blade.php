@@ -25,7 +25,13 @@
                                 </div>
                             </div>
                         @elseif (Auth::check() && Auth::user()->role == 'apoteker')
-
+                            <div class="col-6 mb-3 d-flex justify-content-center">
+                                <div class="card" style="width: 18rem;">
+                                    <a href="{{ route('verifikasi.index') }}" class="href">
+                                        <img src="{{ asset('assets/images/verifikasi_resep.png') }}" class="card-img-top card-menu" />
+                                    </a>
+                                </div>
+                            </div>
                         @else
                             <div class="col-6 mb-3 d-flex justify-content-end">
                                 <div class="card" style="width: 18rem;">
@@ -36,7 +42,9 @@
                             </div>
                             <div class="col-6 mb-3 d-flex justify-content-start">
                                 <div class="card" style="width: 18rem;">
-                                    <img src="{{ asset('assets/images/input_resep.png') }}" class="card-img-top card-menu" />
+                                    <a href="{{ route('transaction.receipt') }}">
+                                        <img src="{{ asset('assets/images/input_resep.png') }}" class="card-img-top card-menu" />
+                                    </a>
                                 </div>
                             </div>
                         @endif

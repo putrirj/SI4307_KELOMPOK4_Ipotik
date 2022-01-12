@@ -88,8 +88,8 @@ class MedicineController extends Controller
         $medicine->need_receipt = $request->has('need_receipt');
 
         if ($request->has('photo') && $validated['photo'] != null) {
-            if (Storage::exists($medicine->photo)) {
-                Storage::delete($medicine->photo);
+            if (Storage::disk('public')->exists($medicine->photo)) {
+                Storage::disk('public')->delete($medicine->photo);
             }
             $medicine->photo = $validated['photo']->store('medicines', 'public');
         }
@@ -109,8 +109,8 @@ class MedicineController extends Controller
     {
         $category_id = $medicine->category_id;
 
-        if (Storage::exists($medicine->photo)) {
-            Storage::delete($medicine->photo);
+        if (Storage::disk('public')->exists($medicine->photo)) {
+            Storage::disk('public')->delete($medicine->photo);
         }
 
         if ($medicine->delete()) {

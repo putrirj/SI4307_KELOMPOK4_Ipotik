@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\ApotekerController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,7 +48,31 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['user'])->group(function () {
         Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+        Route::get('cart/checkout', [CartController::class, 'create'])->name('cart.create');
+        Route::post('cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
         Route::post('cart/{medicine}', [CartController::class, 'store'])->name('cart.store');
+
+        Route::get('transaction', [TransactionController::class, 'index'])->name('transaction.index');
+        Route::get('transaction/receipt', [TransactionController::class, 'receipt'])->name('transaction.receipt');
+        Route::post('transaction/receipt', [TransactionController::class, 'receiptStore'])->name('transaction.receipt_store');
+        Route::get('transaction/{transaction}/bayar', [TransactionController::class, 'bayar'])->name('transaction.bayar');
+        Route::post('transaction/{transaction}/bayar', [TransactionController::class, 'proses']);
+    });
+
+    Route::post('transaction/{transaction}/selesai', [TransactionController::class, 'selesai'])->name('transaction.selesai');
+    Route::get('transaction/{transaction}', [TransactionController::class, 'show'])->name('transaction.show');
+
+    Route::middleware(['apoteker'])->group(function () {
+        Route::get('verifikasi', [ApotekerController::class, 'index'])->name('verifikasi.index');
+        Route::post('verifikasi/{transaction}/tolak', [ApotekerController::class, 'tolak'])->name('verifikasi.tolak');
+        Route::post('verifikasi/{transaction}/proses', [ApotekerController::class, 'proses'])->name('verifikasi.proses');
+        Route::post('verifikasi/{transaction}/dikirim', [ApotekerController::class, 'dikirim'])->name('verifikasi.dikirim');
+        Route::get('verifikasi/{transaction}/keranjang', [ApotekerController::class, 'keranjang'])->name('verifikasi.keranjang');
+        Route::post('verifikasi/{transaction}/keranjang', [ApotekerController::class, 'pesanan'])->name('verifikasi.keranjang.pesanan');
+        Route::get('verifikasi/{transaction}/keranjang/category', [ApotekerController::class, 'category'])->name('verifikasi.keranjang.category');
+        Route::get('verifikasi/{transaction}/keranjang/category/{category}', [ApotekerController::class, 'medicine'])->name('verifikasi.keranjang.medicine');
+        Route::get('verifikasi/{transaction}/keranjang/medicine/{medicine}', [ApotekerController::class, 'medicineDetail'])->name('verifikasi.keranjang.medicine_detail');
+        Route::post('verifikasi/{transaction}/keranjang/medicine/{medicine}', [ApotekerController::class, 'store'])->name('verifikasi.keranjang.store');
     });
 
     Route::get('profile', [UserController::class, 'edit'])->name('user.edit');

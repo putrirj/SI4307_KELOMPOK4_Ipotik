@@ -13,23 +13,18 @@
                 <li class="nav-item">
                     <a class="nav-link text-dark {{ Request::is('post*') ? 'active' : '' }}" href="{{ route('post.index') }}">Artikel</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark {{ Request::is('status*') ? 'active' : '' }}">Status</a>
-                </li>
+                @if (Auth::check() && Auth::user()->role == 'user')
+                    <li class="nav-item">
+                        <a class="nav-link text-dark {{ Request::is('transaction*') ? 'active' : '' }}" href="{{ route('transaction.index') }}">Status</a>
+                    </li>
+                @endif
             </ul>
             <div class="d-flex d-sm-inline">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     @if (Auth::check())
                         @if (Auth::user()->role == 'user')
                             <li class="nav-item me-3">
-                                <a class="nav-link text-dark" aria-current="page" href="#"><i class="fa-solid fa-bell"></i></a>
-                            </li>
-                            <li class="nav-item me-3">
                                 <a class="nav-link text-dark" href="{{ route('cart.index') }}"><i class="fa-solid fa-cart-shopping"></i></a>
-                            </li>
-                        @elseif (Auth::user()->role == 'apoteker')
-                            <li class="nav-item me-3">
-                                <a class="nav-link text-dark" aria-current="page" href="#"><i class="fa-solid fa-bell"></i></a>
                             </li>
                         @endif
                         <div class="dropdown text-end align-self-center me-3">

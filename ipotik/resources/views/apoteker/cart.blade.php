@@ -6,7 +6,8 @@
             <section id="menu">
                 <div class="container">
                     <div class="row justify-content-center mt-3">
-                        <p class="h4 text-center mt-3 mb-3">Keranjang</p>
+                        <p class="h4 text-center mt-3">Keranjang</p>
+                        <p class="h6 text-center mb-3">{{ $transaction->user->name }} | {{ $transaction->file_name }}</p>
                         <div class="col-12 col-lg-10 mb-3 d-flex justify-content-center">
                             <div class="h-100 p-5 text-white rounded-3 d-block text-center w-100">
                                 <div class="table-responsive">
@@ -36,17 +37,15 @@
                                                 </tr>
                                             @endforelse
                                         </tbody>
-                                        @if ($total > 0)
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="4" class="text-end">
-                                                    <p class="mb-2">Total Belanja: Rp {{ $total }}</p>
-                                                    <a href="{{ route('cart.create') }}" class="btn btn-primary bg-primary border-0">Checkout</a>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                        @endif
                                     </table>
+                                </div>
+                                <div class="text-center mt-5">
+                                    <a href="{{ route('transaction.show', $transaction->id) }}" class="btn btn-primary">Detail</a>
+                                    <a href="{{ route('verifikasi.keranjang.category', $transaction->id) }}" class="btn btn-warning">Tambah Obat</a>
+                                    <form action="{{ route('verifikasi.keranjang.pesanan', $transaction->id) }}" method="post" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success">Buat Pesanan</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

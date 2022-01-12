@@ -18,4 +18,9 @@ class Medicine extends Model
     {
         return $this->belongsTo(Cart::class);
     }
+
+    public function apoteker_cart()
+    {
+        return $this->belongsTo(ApotekerCart::class);
+    }
 }
